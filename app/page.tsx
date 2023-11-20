@@ -1,14 +1,14 @@
 'use client';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import InputLayout from "@/app/components/inputs/InputLayout";
 import ButtonDefault from "@/app/components/buttons/ButtonDefault";
-import {useState} from "react";
 import {login} from "@/app/services/api";
 import {toast} from "react-toastify";
 import AudaLogo from "@/app/components/logo/AudaLogo";
-import {useRouter} from "next/router";
 
 export default function Login() {
-  const router = useRouter()
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -41,9 +41,7 @@ export default function Login() {
         return
       }
 
-      router.push('/dashboard').then(() => {
-        toast.success('entrou')
-      })
+      router.push("/dashboard");
     })
   }
 
