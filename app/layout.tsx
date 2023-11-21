@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Roboto_Condensed } from 'next/font/google'
-import './globals.css'
 import {ToastContainer} from "react-toastify";
+import './globals.css'
 import 'react-toastify/dist/ReactToastify.css';
 
 const robotoCondensed = Roboto_Condensed({ subsets: ['latin'] })
@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={robotoCondensed.className}>
+      <body className={robotoCondensed.className} suppressHydrationWarning={true}>
         {children}
         <ToastContainer/>
       </body>
