@@ -19,7 +19,7 @@ export default function Login() {
         const token = Cookies.get('token')
 
         if (token) {
-            router.push('/dashboard')
+            router.push('/pages/dashboard')
         }
     })
 
