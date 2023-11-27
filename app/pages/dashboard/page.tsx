@@ -1,7 +1,12 @@
-export default function Page() {
+'use client';
+import Auth from '../../HOC/auth'
+import Layout from "@/app/components/layout/Layout";
+function Page() {
     return (
-        <div className={`w-screen h-screen`}>
-            <h1 className={`text-4xl text-center`}>Dashboard</h1>
-        </div>
+        <Layout>
+            Dashboard
+        </Layout>
     )
 }
+
+export default Auth(Page)
