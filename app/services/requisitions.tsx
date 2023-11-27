@@ -9,3 +9,14 @@ export async function post(url: string, method: string, params: any) {
 
     return await response.json();
 }
+
+export async function get(url: string, method: string) {
+    const response = await fetch(url, {
+        method: method,
+        headers: {
+            "Content-Type": "application/json"
+        },
+    });
+
+    return await response.json();
+}
