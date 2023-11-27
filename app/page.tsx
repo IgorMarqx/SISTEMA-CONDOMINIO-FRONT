@@ -52,7 +52,7 @@ export default function Login() {
             }
 
             Cookies.set('token', data.token)
-            router.push("/dashboard");
+            router.push("pages/dashboard");
         })
     }
 
