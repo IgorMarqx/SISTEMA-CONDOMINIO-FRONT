@@ -60,7 +60,7 @@ export default function Login() {
         <div className={`w-screen mt-20 flex justify-center items-center`}>
             <div className={`w-96`}>
                 <div className={`flex flex-col justify-center items-center`}>
-                    <AudaLogo/>
+                    <AudaLogo width={300}/>
                     <p className={`font-bold`}><span className={`text-pink-500`}>SGC</span> - Sistema de Gestão
                         Condominal</p>
                 </div>
