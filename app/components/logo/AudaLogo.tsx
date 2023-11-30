@@ -1,10 +1,16 @@
 import logo from "@/app/assets/images/audaLogo.png";
 import Image from 'next/image';
 
-export default function AudaLogo() {
+interface props {
+    width: number;
+}
+
+export default function AudaLogo(props: props) {
     return (
         <div>
-            <Image src={logo} alt={'Auda Condominios'} width={300}/>
+            <a href={`/pages/dashboard`}>
+                <Image src={logo} alt={'Auda Condominios'} width={props.width}/>
+            </a>
         </div>
     )
 }
