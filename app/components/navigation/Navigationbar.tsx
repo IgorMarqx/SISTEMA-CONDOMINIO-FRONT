@@ -17,7 +17,7 @@ export default function Navigationbar({children, isNavCollapsed}: any){
                 </div>
 
             </motion.div>
-            <div className={`flex flex-1 bg-[#EEEEEE]`}>
+            <div className={`flex-1 bg-[#EEEEEE]`}>
                 {children}
             </div>
         </div>
