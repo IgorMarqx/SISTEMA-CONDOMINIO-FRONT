@@ -11,9 +11,8 @@ export default function Auth(Component: any) {
 
         useEffect(() => {
             verifyToken(token).then((response) => {
-                const data = response.data
 
-                if(data.error){
+                if(response.error){
                     Cookies.remove('token')
                     router.replace('/')
                     return
