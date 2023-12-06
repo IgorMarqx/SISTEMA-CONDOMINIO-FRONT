@@ -9,6 +9,9 @@ import InputCreate from "@/app/components/inputs/InputCreate";
 
 function Users(){
     const [isOpen, setIsOpen] = useState(false);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [condominio, setCondominio] = useState('');
 
     return(
         <Layout>
