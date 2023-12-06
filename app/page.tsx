@@ -18,6 +18,10 @@ export default function Login() {
     useEffect(() => {
         const token = Cookies.get('token')
 
+        if(email && password){
+            setIsButtonDisabled(false)
+        }
+
         if (token) {
             router.push('/pages/dashboard')
         }
