@@ -8,3 +8,7 @@ export async function login(email: string, password: string) {
 export async function verifyToken(token: string | undefined) {
     return await post(`${BASE_URL}getToken`, 'POST', {token})
 }
+
+export async function register(name: string, email: string, password:string) {
+    return await post(`${BASE_URL}auth/register`, 'POST', {name, email, password})
+}
