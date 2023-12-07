@@ -1,9 +1,12 @@
+import Cookies from "js-cookie";
+
 export async function post(url: string, method: string, params: any) {
     const response = await fetch(url, {
         method: method,
         body: JSON.stringify(params),
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + Cookies.get('token')
         },
     });
 
