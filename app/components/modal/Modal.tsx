@@ -6,9 +6,11 @@ interface ModalProps {
     onClose: () => void;
     children: any;
     modalTitle: string;
+    onValidate: () => boolean;
+    onRequestSubmit: () => Promise<boolean>;
 }
 
-const Modal: React.FC<ModalProps> = ({isOpen, onClose, children, modalTitle}) => {
+const Modal: React.FC<ModalProps> = ({isOpen, onClose, children, modalTitle,onValidate, onRequestSubmit}) => {
     const modalRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -17,11 +19,35 @@ const Modal: React.FC<ModalProps> = ({isOpen, onClose, children, modalTitle}) =>
                 onClose();
             }
         };
+
+        const handleKeyPress = (e: KeyboardEvent) => {
+            if (e.key === 'Enter') {
+                handleSubmit();
+            }
+        }
+
         document.addEventListener("click", checkIfClickedOutside);
+        document.addEventListener("keypress", handleKeyPress);
+
         return () => {
             document.removeEventListener("click", checkIfClickedOutside);
+            document.removeEventListener("keypress", handleKeyPress);
         };
     }, [onClose]);
+
+    const handleSubmit = async () => {
+        if(!onValidate()){
+            return;
+        }
+
+        const success = await onRequestSubmit();
+
+        if(success){
+            onClose();
+        }
+
+        return
+    }
 
     return (
         <div>
@@ -47,7 +73,7 @@ const Modal: React.FC<ModalProps> = ({isOpen, onClose, children, modalTitle}) =>
                             </div>
                             <div className="flex items-center justify-end p-4 md:p-5 border-t border-gray-200 rounded-b gap-2">
                                 <button  onClick={onClose} data-modal-hide="default-modal" type="button" className="ms-3 text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 focus:z-10">Fechar</button>
-                                <button  onClick={onClose} data-modal-hide="default-modal" type="button" className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Criar</button>
+                                <button  onClick={handleSubmit} data-modal-hide="default-modal" type="button" className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Criar</button>
                             </div>
                         </div>
                     </div>
