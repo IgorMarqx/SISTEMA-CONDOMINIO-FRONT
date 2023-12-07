@@ -1,46 +1,56 @@
 import InputLayout from "@/app/components/inputs/InputLayout";
+import Inputs from "@/app/components/inputs/Inputs";
+import {useState} from "react";
 
-interface Props {
-    name: string;
-    email: string;
-    onChange: (e: any) => void;
-}
+export default function InputCreate({ setInputData, inputData }: any) {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [condominio, setCondominio] = useState('');
 
-export default function InputCreate(props: Props) {
+    const handleNameChange = (e: any) => {
+        const newName = e.target.value;
+        setName(newName);
+        setInputData({...inputData, name: newName})
+    }
+
+    const handleEmailChange = (e: any) => {
+        const newEmail = e.target.value;
+        setEmail(newEmail);
+        setInputData({...inputData, email: newEmail})
+    }
+
+    const handlePasswordChange = (e: any) => {
+        const newPassword = e.target.value
+        setPassword(newPassword)
+        setInputData({...inputData, password: newPassword})
+    }
+
     return (
         <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <InputLayout
+            <div className="w-full md:w-1/2 px-3">
+                <Inputs
                     label={'Nome'}
                     placeHolder={'Informe seu nome'}
-                    value={props.name}
-                    onChange={(e) => setName(e.target.value)}/>
+                    required={'*'}
+                    value={name}
+                    onChange={handleNameChange}/>
             </div>
             <div className="w-full md:w-1/2 px-3">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">
-                    E-mail <span className="text-red-500">*</span>
-                </label>
-                <input
-                    className="appearance-none block w-full bg-gray-50 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                    id="email"
-                    type="email"
-                    placeholder="E-mail"
-                    value={props.email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+                <Inputs
+                    label={'Email'}
+                    placeHolder={'Informe seu e-mail'}
+                    required={'*'}
+                    value={email}
+                    onChange={handleEmailChange}/>
             </div>
             <div className="w-full md:w-1/1 px-3">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">
-                    Condominio<span className="text-red-500">*</span>
-                </label>
-                <input
-                    className="appearance-none block w-full bg-gray-50 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                    id="email"
-                    type="email"
-                    placeholder="E-mail"
-                    // value={email}
-                    // onChange={(e) => setEmail(e.target.value)}
-                />
+                <Inputs
+                    label={'Senha'}
+                    placeHolder={'Informe uma senha'}
+                    required={'(opcional)'}
+                    value={password}
+                    onChange={handlePasswordChange}/>
             </div>
         </div>
     )
