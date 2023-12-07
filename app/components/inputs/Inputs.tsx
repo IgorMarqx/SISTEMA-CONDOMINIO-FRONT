@@ -13,9 +13,9 @@ interface Props {
 export default function InputLayout(props: Props) {
     return(
         <div className={`flex flex-col justify-center`}>
-            <label className={`mt-4`} htmlFor={props.textFor}>{props.label} <span className={`text-red-500`}>{props.required}</span></label>
+            <label className={`block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2`} htmlFor={props.textFor}>{props.label} <span className={`text-red-500`}>{props.required}</span></label>
             <input
-                className={`border rounded p-1 pl-2 outline-none mb-2 focus:border-pink-500`}
+                className={`appearance-none block w-full bg-gray-50 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`}
                 type={props.typeInput}
                 id={props.textFor}
                 placeholder={props.placeHolder}
