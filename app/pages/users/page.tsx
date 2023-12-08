@@ -17,6 +17,7 @@ function Users() {
         name: '',
         email: '',
         password: '',
+        condominium: null
     });
 
     const toastAutoClose = (text: string) => {
