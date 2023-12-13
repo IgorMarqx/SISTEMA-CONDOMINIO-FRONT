@@ -1,8 +1,15 @@
-interface Props{
-    data: any
-}
+import {useEffect, useState} from "react";
+import {getUsers} from "@/app/services/api";
 
-export default function Table(props: Props){
+export default function Table(){
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        getUsers().then((response) => {
+            setUsers(response)
+        })
+    })
+
     return(
         <div>
             <div className="relative overflow-x-auto">
@@ -25,7 +32,7 @@ export default function Table(props: Props){
                     </thead>
                     <tbody>
                     <tr className="bg-white border-b dark:bg-gray-800hover:bg-gray-50">
-                        {props.data}
+                        {users}
                     </tr>
                     </tbody>
                 </table>
