@@ -9,6 +9,7 @@ export default function InputCreate({setInputData, inputData}: any) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [condominium, setCondominium] = useState([]);
+    const [selectedCondominium, setSelectedCondominium] = useState();
 
     useEffect(() => {
         getCondominiums().then((response) => {
@@ -36,8 +37,10 @@ export default function InputCreate({setInputData, inputData}: any) {
 
     const handleCondominiumChange = (e: any) => {
         const newCondominium = e.target.value
-        setCondominium([newCondominium])
-        setInputData({...inputData, condominium: newCondominium})
+        setSelectedCondominium(newCondominium)
+        setInputData({...inputData, condominiumId: newCondominium})
+
+        console.log(newCondominium)
     }
 
     return (
@@ -75,12 +78,14 @@ export default function InputCreate({setInputData, inputData}: any) {
                     label="Condominio"
                     required="*"
                     placeHolder="Select an option"
-                    value={condominium}
+                    value={selectedCondominium}
                     onChange={handleCondominiumChange}
                 >
                     <option disabled selected>Escolha um condominio</option>
-                    {condominium.map((condominium:any) => {
-                        return <option key={condominium.id} value={condominium.id}>{condominium.name}</option>
+                    {condominium.map((condominiums: any) => {
+                        return (
+                            <option key={condominiums.id} value={parseInt(condominiums.id)}>{condominiums.name}</option>
+                        )
                     })}
                 </Select>
             </div>
